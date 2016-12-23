@@ -1,5 +1,5 @@
 # EVE Corporation Wallet Script v0.1
-# written on behalf of Jerppu 2016
+written on behalf of Jerppu 2016
 
 EVE CWS stores selected Corporation Wallet Journal Data in a MySQL database.
 This script is intended to be regularly executed using cronjobs.
