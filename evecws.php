@@ -50,7 +50,7 @@ echo $msg;
 $filteredAssets = array();
 
 // configure desired wallet journal reference types:
-$referencetypes = array(10);
+$referencetypes = array(46, 2, 97, 56, 120);
 
 // loop the xml
 foreach ($xml->xpath('//row') as $key => $value) {
