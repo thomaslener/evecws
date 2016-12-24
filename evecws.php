@@ -50,7 +50,7 @@ echo $msg;
 $filteredAssets = array();
 
 // configure desired wallet journal reference types:
-$referencetypes = array(46, 2, 97, 56, 120);
+$referencetypes = array(10);
 
 // loop the xml
 foreach ($xml->xpath('//row') as $key => $value) {
@@ -69,7 +69,6 @@ $ownerID1 = (string)$value['ownerID1'];
 $ownerName2 = (string)$value['ownerName2'];
 $ownerID2 = (string)$value['ownerID2'];
 $argName1 = (string)$value['argName1'];
-$argName1 = addslashes($argName1);
 $argID1 = (string)$value['argID1'];
 $balance = (string)$value['balance'];
 $reason = (string)$value['reason'];
@@ -77,6 +76,7 @@ $owner1TypeID = (string)$value['owner1TypeID'];
 $owner2TypeID = (string)$value['owner2TypeID'];
 $refID = (string)$value['refID'];
 $amount = (string)$value['amount'];
+
 
 // put variables into array
 $filteredAssets[$key] = array(
@@ -125,13 +125,31 @@ $doublecheck = mysqli_query($conn, "SELECT * FROM walletjournal WHERE refID='".$
   } else {
 
 // if refID is not in database, save it to database and print #
-  if (!mysqli_query($conn,"INSERT INTO walletjournal (date, refID, refTypeID, ownerName1, ownerID1, ownerName2, ownerID2, argName1, argID1, balance, reason, owner1TypeID, owner2TypeID, amount)
-                                              VALUES ('$asset[date]','$asset[refID]','$asset[refTypeID]','$asset[ownerName1]','$asset[ownerID1]','$asset[ownerName2]','$asset[ownerID2]','$asset[argName1]',
-                                                '$asset[argID1]','$asset[balance]','$asset[reason]','$asset[owner1TypeID]','$asset[owner2TypeID]','$asset[amount]')")) {
-    printf("Errormessage: %s\n", mysqli_error($conn));
-  } else { echo "#";}
+
+$stmt = $conn->prepare("INSERT INTO walletjournal (date, refID, refTypeID, ownerName1, ownerID1, ownerName2, ownerID2, argName1, argID1, balance, reason, owner1TypeID, owner2TypeID, amount)
+                                              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$stmt->bind_param("ssssssssssssss", $date, $refID, $refTypeID, $ownerName1, $ownerID1, $ownerName2, $ownerID2, $argName1, $argID1, $balance, $reason, $owner1TypeID, $owner2TypeID, $amount);
+
+$date=$asset['date'];
+$refID=$asset['refID'];
+$refTypeID=$asset['refTypeID'];
+$ownerName1=$asset['ownerName1'];
+$ownerID1=$asset['ownerID1'];
+$ownerName2=$asset['ownerName2'];
+$ownerID2=$asset['ownerID2'];
+$argName1=$asset['argName1'];
+$argID1=$asset['argID1'];
+$balance=$asset['balance'];
+$reason=$asset['reason'];
+$owner1TypeID=$asset['owner1TypeID'];
+$owner2TypeID=$asset['owner2TypeID'];
+$amount=$asset['amount'];
+
+if (!$stmt->execute()) {printf("Erromessage: %s\n", mysqli_error($conn));
+} else { echo "#";}
 }
 }
+
 echo "\n\nDone. Fly safe."."\n";
 echo "--------------------------"."\n";
 ?>
