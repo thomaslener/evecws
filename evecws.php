@@ -4,6 +4,8 @@
 Run this script to transfer data from API to database
 */
 
+$today = date("Y-m-d H:i:s");
+
 // Set Error Reporting
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -16,6 +18,7 @@ require_once 'curl.php';
 // Create config.ini array
 // [database]'host','name','user','pass' [api]'id','code'
 $config = parse_ini_file("config.ini");
+echo "\n".$today."\n";
 
 // [2]
 // Establish database connection
@@ -23,10 +26,10 @@ $conn = new mysqli($config['host'], $config['user'], $config['pass'], $config['n
 if ($conn->connect_error) {
   die("[2] Database connection failed: " . $conn->connect_error);
 }
-echo "[2] Database connected successfully<br>";
+echo "[2] Database connected successfully\n";
 
 // [3] Check if Curl is enabled:
-echo '[3] Curl ', function_exists('curl_version') ? 'is working<br>' : 'Disabled: please enable / install php curl extension.<br>';
+echo '[3] Curl ', function_exists('curl_version') ? 'is working'."\n" : 'Disabled: please enable / install php curl extension.\n';
 
 // [4] Get API Data
 $url="https://api.eveonline.com/corp/WalletJournal.xml.aspx?keyID=".$config['id']."&vCode=".$config['code']."&accountKey=".$config['accountkey'];
@@ -34,10 +37,10 @@ $xml = makeApiRequest($url);
 
 // check if API Data was received successfully
 if ($xml->error) {
-  $msg = "[4] Error receiving API Data";
+  $msg = "[4] Error receiving API Data\n";
 }
 elseif ($xml->result->rowset->row[0]) {
-  $msg = '[4] API Data received<br>';
+  $msg = '[4] API Data received'."\n";
  }
 echo $msg;
 
@@ -47,7 +50,7 @@ echo $msg;
 $filteredAssets = array();
 
 // configure desired wallet journal reference types:
-$referencetypes = array(46, 2, 97, 56);
+$referencetypes = array(46, 2, 97, 56, 120);
 
 // loop the xml
 foreach ($xml->xpath('//row') as $key => $value) {
@@ -66,6 +69,7 @@ $ownerID1 = (string)$value['ownerID1'];
 $ownerName2 = (string)$value['ownerName2'];
 $ownerID2 = (string)$value['ownerID2'];
 $argName1 = (string)$value['argName1'];
+$argName1 = addslashes($argName1);
 $argID1 = (string)$value['argID1'];
 $balance = (string)$value['balance'];
 $reason = (string)$value['reason'];
@@ -104,10 +108,10 @@ foreach ($filteredAssets as $key => $asset) {
 }*/
 
 // check if the new filtered array is populated
-if ($filteredAssets) {echo "[5] Data successfully stored in array<br><br>";} else {die("[5] Error storing data in array");}
+if ($filteredAssets) {echo "[5] Data successfully stored in array\n\n";} else {die("[5] Error storing data in array\n");}
 
 //Save the filtered array in the database
-echo "Transfer to Database (x=doubles, #=new entry):<br>";
+echo "Transfer to Database (x=doubles, #=new entry):\n";
 
 // loop the filtered array
 foreach ($filteredAssets as $key => $asset) {
@@ -128,5 +132,6 @@ $doublecheck = mysqli_query($conn, "SELECT * FROM walletjournal WHERE refID='".$
   } else { echo "#";}
 }
 }
-echo "<br><br>Done. Fly safe.";
+echo "\n\nDone. Fly safe."."\n";
+echo "--------------------------"."\n";
 ?>
