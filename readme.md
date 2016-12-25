@@ -26,7 +26,7 @@ Nevertheless, every second of coding and learning was precious.
 [3] Adjust config.ini with database credentials
     and Corp API Key (must have Wallet permissions).
     
-[4] Test is everything works as expected by manually executing evecws.php and evecws_daily.php.
+[4] Test if everything works as expected by manually executing evecws.php and evecws_daily.php.
     As soon as the script tells you the data is stored in the database, have a look at it to check entries. 
 
 [5] Now set up a cronjob with desired frequency to execute 'evecws.php'
