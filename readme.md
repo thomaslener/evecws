@@ -26,13 +26,12 @@ Nevertheless, every second of coding and learning was precious.
 [3] Adjust config.ini with database credentials
     and Corp API Key (must have Wallet permissions).
     
-[4] Test if everything works as expected by manually executing evecws.php and evecws_daily.php.
-    As soon as the script tells you the data is stored in the database, have a look at it to check entries. 
+[4] Test if everything works as expected by manually executing evecws.php and evecws_daily.php by either typing "php evecws.php" in the     shell or navigating your webbrowser to evecws.php. As soon as the script tells you the data is stored in the database, have a look       at it to check entries. 
 
 [5] Now set up a cronjob with desired frequency to execute 'evecws.php'
     as well as 'evecws_daily.php" for daily reports.
 
-[6] PHP open_basedir must be "off", else curl error occurs.
+If you get a curl error, please note that PHP open_basedir must be "off" / not set in your php.ini.
 
 # Selecting Transaction Types
 
