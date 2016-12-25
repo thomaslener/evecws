@@ -27,6 +27,7 @@ Nevertheless, every second of coding and learning was precious.
     and Corp API Key (must have Wallet permissions).
 
 [4] Set up a cronjob with desired frequency to execute 'evecws.php'
+    as well as 'evecws_daily.php" for daily reports.
 
 [5] PHP open_basedir must be "off", else curl error occurs.
 
