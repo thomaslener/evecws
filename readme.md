@@ -2,7 +2,7 @@
 for use with "EVE Online" API by CCP Games.
 
 EVE CWS stores selected Corporation Wallet Journal Data in a MySQL database.
-This script is intended to be regularly executed using cronjobs.
+This script is intended to be regularly executed using cronjobs. If you do not have access to a server, you may upload it to a regular webspace and execute it manually by webbrowser.
 
 EVE CWS makes use of the "old" EVE XML API,
 because it's the only way to gather Corp Wallet Data at the time of writing.
