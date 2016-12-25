@@ -1,7 +1,10 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 CREATE TABLE `walletjournal` (
   `id` int(11) NOT NULL,
-  `date` datetime DEFAULT NULL,
+  `dateJ` datetime DEFAULT NULL,
+  `weekno` int(2) NOT NULL,
   `refID` bigint(11) DEFAULT NULL,
   `refTypeID` int(11) DEFAULT NULL,
   `ownerName1` varchar(50) DEFAULT NULL,
@@ -19,4 +22,15 @@ CREATE TABLE `walletjournal` (
 ALTER TABLE `walletjournal`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `walletjournal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE `daily` (
+  `id` int(11) NOT NULL,
+  `dateD` date NOT NULL,
+  `refTypeID` int(4) NOT NULL,
+  `amount` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `daily`
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `daily`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
