@@ -14,9 +14,10 @@ Nevertheless, every second of coding and learning was precious.
 # Setup Instructions
 
 - evecws.php (main script to be executed with cron)
+- evecws_daily.php (optional, for daily reports)
 - curl.php (required by evecws.php)
 - config.ini (the place to save your credentials and choose wallet division)
-- install.sql (execute in your database to create table)
+- install.sql (execute in your database to create tables)
 
 [1] Save all of this files in the same - non public - folder on your server.
 
