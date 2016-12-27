@@ -1,7 +1,7 @@
 # EVE Corporation Wallet Script
 for use with "EVE Online" API by CCP Games.
 
-evecws is special because it is very simple and it does not use any framework. So it is great to read through the code and learn some basics about getting and storing data from EVE API using PHP & MySQL.
+EVE CWS is special because it is very simple and it does not use any framework. So it is great to read through the code and learn some basics about getting and storing data from EVE API using PHP & MySQL.
 
 EVE CWS stores selected Corporation Wallet Journal Data in a MySQL database.
 This script is intended to be regularly executed using cronjobs. If you do not have access to a server, you may upload it to a regular webspace and execute it manually by webbrowser.
