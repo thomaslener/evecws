@@ -44,3 +44,7 @@ $referencetypes = array(46, 2, 97, 56);
 
 For further data types please refer to:
 http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/constants.html#reference-type
+
+# Create Reports
+
+Use create_html.php and bpc.css to creaty monthly reports as static HTML pages. The file create_html.php is well commented, read it to learn how it works.
