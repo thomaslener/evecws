@@ -1,4 +1,4 @@
-# EVE Corporation Wallet Script v0.1
+# EVE Corporation Wallet Script
 for use with "EVE Online" API by CCP Games.
 
 EVE CWS stores selected Corporation Wallet Journal Data in a MySQL database.
