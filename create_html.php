@@ -76,7 +76,7 @@ fwrite($myfile, $start_html);
 
 // Get dates from daily table and store them to an array
 $date_array = array();
-$dates = "SELECT DISTINCT dateD FROM `daily` WHERE 1 ORDER by dateD DESC";
+$dates = "SELECT DISTINCT dateD FROM `daily` WHERE YEAR(dateD) = YEAR(NOW()) AND MONTH(dateD) = MONTH(NOW()) ORDER by dateD DESC";
 $result = $conn->query($dates);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
